@@ -1,9 +1,10 @@
-IDIR =../include
+IDIR =include
 CC=gcc
 CFLAGS=-I$(IDIR) -Wall -Werror -pedantic
 
-ODIR=obj
-LDIR =../lib
+SDIR=src
+ODIR=$(SDIR)/obj
+LDIR =lib
 
 LIBS=
 
@@ -13,7 +14,7 @@ DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 _OBJ=mccluskey.o test.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-$(ODIR)/%.o: %.c $(DEPS) 
+$(ODIR)/%.o: $(SDIR)/%.c $(DEPS) 
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 test: $(OBJ)
