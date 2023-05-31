@@ -8,10 +8,8 @@ int main() {
 	uint16_t buffer;
 
 	scanf_minmap(&buffer);
-
-	clear_rows(rows);
+	clean_rows(rows);
 	int2rows(rows, &buffer);
-	print_rows(rows);
 
 	minimalise(rows, &buffer);
 	print_rows(rows);

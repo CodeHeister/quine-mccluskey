@@ -37,7 +37,7 @@ extern int can_combine(char m1, char m2);
 extern void scanf_minmap(uint16_t *buffer);
 extern void print_row(char *rows, int8_t n);
 extern void print_rows(char *rows);
-extern void clear_rows(char *rows);
+extern void clean_rows(char *rows);
 extern void set_row(char *rows, int8_t n);
 extern void set_rows(char *rows);
 extern void int2rows(char *rows, const uint16_t *buffer);

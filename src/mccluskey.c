@@ -55,7 +55,7 @@ void print_rows(char *rows) {
 
 // set all rows to 0x11111111
 
-void clear_rows(char *rows) {
+void clean_rows(char *rows) {
 	
 	memset(rows, 255, sizeof(*rows) * ROWS);
 	
