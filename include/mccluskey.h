@@ -11,7 +11,7 @@
 #define UNSET_POS(x, y) CLR_BIT(x, y*2); CLR_BIT(x, y*2+1)
 #define LOCK_POS(x, y) SET_BIT(x, y*2); SET_BIT(x, y*2+1);
 #define ROWS 16
-#define LEN 24
+#define LEN 32
 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 #define BYTE_TO_BINARY(byte)  \
