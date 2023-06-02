@@ -8,6 +8,30 @@
 
 #include <mccluskey.h>
 
+// bit-like print pattern
+
+#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
+#define BYTE_TO_BINARY(byte)  \
+  (byte & 0x80 ? '1' : '0'), \
+  (byte & 0x40 ? '1' : '0'), \
+  (byte & 0x20 ? '1' : '0'), \
+  (byte & 0x10 ? '1' : '0'), \
+  (byte & 0x08 ? '1' : '0'), \
+  (byte & 0x04 ? '1' : '0'), \
+  (byte & 0x02 ? '1' : '0'), \
+  (byte & 0x01 ? '1' : '0') 
+
+// calc arrays length
+
+#define LEN 32
+
+// type minimization calcs
+
+typedef struct NumSet {
+	char num;
+	char refers[8];
+} NumSet_t;
+
 // write 16bit binary input to uint16_t
 
 void scanf_minmap(uint16_t *buffer) {
@@ -18,7 +42,7 @@ void scanf_minmap(uint16_t *buffer) {
 	// clean input
 
 	int i;
-	while ((i = getchar()) != '\n' && i != EOF) { }
+	while ((i = getchar()) != '\n' && i != EOF);
     
 	// get input
 
@@ -35,7 +59,7 @@ void print_row(char *rows, int8_t n) {
 	
 	printf("%hhu | ", n);
 	
-	for(int8_t i = 3; i > -1; i--)
+	for(uint8_t i = 4; i-->0;)
 		printf("%c ", (GET_POS(rows[n], i) > 1) ? '-' : '0' + GET_POS(rows[n], i));
 	
 	printf("| "BYTE_TO_BINARY_PATTERN"\n", BYTE_TO_BINARY(rows[n]));
@@ -192,7 +216,7 @@ void minimalise(char *rows, const uint16_t *buffer) {
 
 						// get free position and check if dublicate
 						
-						for (g = 0; (char)tmp[g].num != (char)255 && tmp[g].num != l_tmp; g++) { }
+						for (g = 0; (char)tmp[g].num != (char)255 && tmp[g].num != l_tmp; g++);
 
 						// if not dublicate
 
@@ -203,7 +227,7 @@ void minimalise(char *rows, const uint16_t *buffer) {
 							tmp[g].num = l_tmp;
 							memcpy(tmp[g].refers, primary[i].refers, sizeof(*(tmp[g].refers)) * 8);
 							
-							for (pos = 1; (char)tmp[g].refers[pos] != (char)255; pos++) { }
+							for (pos = 1; (char)tmp[g].refers[pos] != (char)255; pos++);
 
 							for (uint8_t h = 0; (char)primary[j].refers[h] != (char)255; h++, pos++)
 								tmp[g].refers[pos] = primary[j].refers[h];
@@ -224,7 +248,7 @@ void minimalise(char *rows, const uint16_t *buffer) {
 
 			// get free space position
 
-			for (g = 0; (char)tmp[g].num != (char)255; g++) { }
+			for (g = 0; (char)tmp[g].num != (char)255; g++);
 
 			for (uint8_t i = 0; i < LEN; i++) {
 				
@@ -336,7 +360,7 @@ void minimalise(char *rows, const uint16_t *buffer) {
 							
 							// get free space and store
 
-							for (g = 0; (char)rows[g] != (char)255; g++) { }
+							for (g = 0; (char)rows[g] != (char)255; g++);
 
 							rows[g] = primary[j].num;
 
