@@ -20,6 +20,11 @@ $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
 test: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
+$(OBJ): | $(ODIR)
+
+$(ODIR):
+	mkdir -p $@
+
 .PHONY: clean
 
 clean: 
